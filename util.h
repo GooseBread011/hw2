@@ -13,7 +13,8 @@
 template <typename T>
 std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
 {
-
+  typename std::set<t>::iterator it = s1.begin();
+  typename std::set<t>::iterator it1 = s2.begin();
 
 
 
