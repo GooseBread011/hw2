@@ -27,7 +27,7 @@ std::set<std::string> Book::keywords() const {
 
 std::string Book::displayString() const{
   std::ostringstream disp;
-  disp << name_ << endl
+  disp << name_ << "\n"
        << "Author: " << author_ << " ISBN: " << isbn_ << "\n"
        << price_ << " " << qty_ << " left.";
   return disp.str();
