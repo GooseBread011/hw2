@@ -21,7 +21,26 @@ std::set<std::string> parseStringToWords(string rawWords)
   std::string words;
 
   while(parse >> words){
-    parseWord.insert(convToLower(words));
+    std::string parseKey;
+    // loop through all indexes
+    for(int i = 0; i < words.length(); i++){
+      // checks for punctation
+      if(std::ispunct(words[i])){
+        // at least 2 character words
+        if(parseKey.length() >= 2){
+          parseWord.insert(convToLower(parseKey));
+        }
+        parseKey.clear();
+      }
+      // Print out the word
+      else{
+        parseKey += words[i];
+      }
+    }
+    // If something is only one character after parsing
+    if (parseKey.length() >= 2){
+      parseWord.insert(convToLower(parseKey));
+    }
   }
   return parseWord;
 }
