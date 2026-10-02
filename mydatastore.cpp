@@ -18,9 +18,9 @@ MyDataStore::~MyDataStore()
   for(pt = product_.begin(); pt != product_.end(); pt++){
     delete *pt; // Removes Product objects
   }
-  vector<User*>::iterator ur;
+  map<string, User*>::iterator ur;
   for (ur = user_.begin(); ur != user_.end(); ur++){
-    delete *ur->second; //Removes User Objects
+    delete ur->second; //Removes User Objects
   }
 }
 
@@ -72,4 +72,15 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
     search_.push_back(*it);
   }
   return search_;
+}
+
+void MyDataStore::dump(std::ostream& ofile){
+  vector<Product*>::iterator prd;
+  map<string,User*>::iterator usr;
+  for (prd = product_.begin(); prd != product_.end(); prd++){
+    (*prd)->dump(ofile);
+  }
+  for (usr = user_.begin(); usr != user_.end(); usr++){
+    usr->second->dump(ofile);
+  }
 }
