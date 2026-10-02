@@ -4,12 +4,12 @@
 #include <set>
 #include <vector>
 #include <map>
-#include "database.h"
+#include "datastore.h"
 
-class MyDataStore : public Datastore(){
+class MyDataStore : public DataStore{
   public:
     MyDataStore();
-    virtual ~DataStore();
+    virtual ~MyDataStore();
 
     virtual void addProduct(Product* P);
     virtual void addUser(User* u);

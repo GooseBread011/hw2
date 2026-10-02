@@ -18,19 +18,51 @@ MyDataStore::~MyDataStore()
 }
 
 void MyDataStore::addProduct(Product* P){
-  product_.pushback(p);
-  std::set<std::string> keywords = p->keywords();
+  product_.push_back(P);
+  std::set<std::string> keywords = P->keywords();
   std::set<std::string>::iterator it;
   for (it = keywords.begin(); it != keywords.end(); it++){
-    keys_[it*].insert(p);
+    keys_[*it].insert(P);
   }
 
 }
 
-void MyDataStore::addUser(User* u){
-  user_[u->getName()] = u;
+void MyDataStore::addUser(User* U){
+  user_[U->getName()] = U;
 }
 
-void std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int type){
+std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int type){
+  vector<Product*> search_;
+  set<Product*> match;
+  // Empty search bar
+  if (terms.size() == 0){
+    return search_;
+  }
+  
+  map<string, set<Product*>>::iterator found;
+  found = keys_.find(terms[0]);
+  if (found != keys_.end()){
+    match = found->second;
+  }
 
+  for (size_t i = 1; i < terms.size(); i++){
+    found = keys_.find(terms[i]);
+    set<Product*> curr_;
+    if (found != keys_.end()){
+      curr_ = found->second;
+    }
+    // AND Keyword
+    if(type == 0){
+      match = setUnion(match, curr_);
+    }
+    // OR Keyword
+    if(type == 1){
+      match = setIntersection(match, curr_);
+    }
+  }
+  set<Product*>::iterator it;
+  for(it = match.begin(); it != match.end(); it++){
+    search_.push_back(*it);
+  }
+  return search_;
 }
