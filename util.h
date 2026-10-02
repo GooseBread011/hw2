@@ -42,7 +42,7 @@ std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
   typename std::set<T>::iterator it = s1.begin();
   typename std::set<T>::iterator it1 = s2.begin();
   // Compare s1 and s2
-  while (it != s1.end() && it1 != s2.begin()){
+  while (it != s1.end() && it1 != s2.end()){
     // If s1 < s2
     if (*it < *it1){
       setUni.insert(*it);
