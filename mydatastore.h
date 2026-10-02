@@ -3,6 +3,7 @@
 #include <string>
 #include <set>
 #include <vector>
+#include <map>
 #include "database.h"
 
 class MyDataStore : public Datastore(){
@@ -16,7 +17,9 @@ class MyDataStore : public Datastore(){
     virtual void dump(std::ostream& ofile);
   
   private:
-    
+    std::vector<Product*> product_;
+    std::map<std::string, User*> user_;
+    std::map<std::string, std::set<Product*>> keys_;
 
 };
 #endif
