@@ -84,3 +84,22 @@ void MyDataStore::dump(std::ostream& ofile){
     usr->second->dump(ofile);
   }
 }
+
+bool MyDataStore::addtoCart(string u, Product* p){
+  u = convToLower(u);
+  if (user_.find(u) != user_.end()){
+    cart_[u].push_back(p);
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
+bool MyDataStore::viewCart(string u, ostream& ofile){
+
+}
+
+bool MyDataStore::buyProduct(string u){
+
+}
