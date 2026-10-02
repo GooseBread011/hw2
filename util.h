@@ -59,6 +59,7 @@ std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
       it++;
       it1++;
     }
+  }
     // In case there is remaining elements left over
     while (it != s1.end()){
       setUni.insert(*it);
@@ -68,7 +69,7 @@ std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
       setUni.insert(*it1);
       it1++;
     }
-  }
+  
   return setUni;
 }
 
